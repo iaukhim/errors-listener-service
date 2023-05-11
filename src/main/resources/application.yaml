@@ -1,0 +1,23 @@
+spring:
+  kafka:
+    bootstrap-servers: broker:9092
+    template:
+      default-topic: "Rent-app_exception"
+    consumer:
+      group-id: "rent-app"
+      key-deserializer: "org.apache.kafka.common.serialization.StringDeserializer"
+      value-deserializer: "org.springframework.kafka.support.serializer.JsonDeserializer"
+      properties:
+        spring:
+          json:
+            type:
+              mapping: "error:com.senla.iaukhim.RentAppError"
+server:
+  port: 0
+management:
+  server:
+    port: 8989
+  endpoints:
+    web:
+      exposure:
+        include: health
